@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <link rel="icon" href="Calculator.png" />
+    <title>CALCULATOR APP</title>
+    <style>
+
+      h1{
+        font-size: 80px;
+        font-family: 'Segoe UI';
+        font-style: italic;
+      }
+        * {
+          margin: 0;
+          padding: 0;
+        }
+  
+        body {
+          background: linear-gradient(135deg, #085739, #ebebeb);
+
+        }
+  
+        /* CALCULATOR VISUALS */
+        .calculator {
+          width: 650px;
+          background: linear-gradient(135deg, #131212, #c9c7c7);
+          box-shadow: 0 10px 20px rgba(0, 10px, 0, 0.3);
+          margin: 50px auto;
+          border-radius: 10px;
+          padding: 20px;
+        }
+  
+        /* SCREEN OF THE EQUATION */
+        .screen {
+          background-color: #8d8d8d;
+          color: white;
+          margin: 10px 0 10px 0;
+          padding: 10px;
+          border-radius: 10px;
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+          transition: all 0.3s ease-in-out;
+          width: 96%;
+          height: 100px;
+          font-size: 35px;
+          text-align: right;
+          border: none;
+          
+        }
+        .screen:hover {
+          background: #e1f8f5;
+          color: rgb(0, 0, 0);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+  
+        /* BUTTONS DESIGN */
+        .buttons {
+          grid-template-columns: repeat(4, 1fr);
+          width: 100%;
+          background-color: #212121;
+          display: grid;
+          
+        }
+  
+        /* BUTTONS VALUE */
+        .btn {
+          border: none;
+          color: white;
+          background: linear-gradient(135deg, #343434, #4f4b4b);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          width: 110px;
+          height: 110px;
+          font-size: 2rem;
+          margin: 8px;
+          border-radius: 60px;
+          
+        }
+  
+        .btn:hover {
+          background: #e1f8f5;
+          color: black;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+          /* modify: scale (1.05);
+          transition: convert with 0.3s of ease; */
+        }
+        .btn:active {
+          background: #115a4a;
+          transform: translateY(2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+  
+        /* operators btn */
+        .btn-op {
+          border-radius: 30px;
+          border: none;
+          background: linear-gradient(135deg, #115a4a, #87afa6);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          color: #e9f7fe;
+          width: 110px;
+          height: 110px;
+          font-size: 2rem;
+          margin: 8px;
+          
+        }
+        .btn-op:hover {
+          background: #e1f8f5;
+          color: black;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+        .btn-op:active {
+          background: #115a4a;
+          transform: translateY(2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+  
+        /* equal btn */
+        .btnEQ {
+          margin: 8px;
+          border-radius: 10px;
+          border: none;
+          background: linear-gradient(135deg, #115a4a, #87afa6);
+          box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+          color: #e9f7fe;
+          grid-row: span 2;
+          width: 110px;
+          height: 240px;
+          font-size: 2rem;
+         
+        }
+        .btnEQ:hover {
+          background: #e1f8f5;
+          color: black;
+          transform: translateY(-3px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .btnEQ:active {
+          background: #115a4a(1, 102, 124);
+          transform: translateY(2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Tablet screen */
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .screen {
+          height: 80px;
+          font-size: 30px;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          padding: 15px;
+          font-size: 1.5rem;
+        }
+
+        .btnEQ {
+          grid-row: span 2;
+        }
+      }
+      /* smaller tablets and larger smartphones */
+      @media only screen and (min-width: 600px) and (max-width: 768px) {
+        .screen {
+          height: 50px;
+          font-size: 25px;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          font-size: 2rem;
+        }
+
+        .btnEQ {
+          grid-row: span 2;
+        }
+      }
+
+      @media only screen and (min-width: 535px) and (max-width: 600px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 40px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          width: 5.7rem;
+          height: 5.7rem;
+          font-size: 20px;
+        }
+
+        .btnEQ {
+          height: 11rem;
+          grid-row: span 2;
+        }
+      }
+
+      @media only screen and (min-width: 480px) and (max-width: 540px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 40px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          width: 5.2rem;
+          height: 5.2rem;
+          font-size: 20px;
+        }
+
+        .btnEQ {
+          height: 11.5rem;
+          grid-row: span 2;
+        }
+      }
+
+      @media screen and (max-width: 490px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 40px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          width: 5rem;
+          height: 5rem;
+          font-size: 20px;
+        }
+
+        .btnEQ {
+          height: 11rem;
+          grid-row: span 2;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 40px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          width: 4.7rem;
+          height: 5rem;
+          font-size: 20px;
+        }
+
+        .btnEQ {
+          height: 11rem;
+          grid-row: span 2;
+        }
+      }
+      @media screen and (max-width: 450px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 40px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          width: 4.4rem;
+          height: 4.4rem;
+          font-size: 20px;
+        }
+
+        .btnEQ {
+          height: 10rem;
+          grid-row: span 2;
+        }
+      }
+      @media screen and (max-width: 425px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 40px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          width: 4.2rem;
+          height: 4.2rem;
+          font-size: 20px;
+        }
+
+        .btnEQ {
+          height: 10rem;
+          grid-row: span 2;
+        }
+      }
+
+      /* mobile  */
+      @media screen and (max-width: 415px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 40px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          width: 4rem;
+          height: 4rem;
+          font-size: 10px;
+        }
+
+        .btnEQ {
+          height: 9rem;
+          grid-row: span 2;
+        }
+      }
+
+      @media only screen and (min-width: 535px) and (max-width: 600px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 40px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          width: 5.7rem;
+          height: 5.7rem;
+          font-size: 20px;
+        }
+
+        .btnEQ {
+          height: 9rem;
+          grid-row: span 2;
+        }
+      }
+
+      @media only screen and (min-width: 381px) and (max-widht: 415px) {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 40px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          width: 2rem;
+          height: 4rem;
+          font-size: 10px;
+        }
+
+        .btnEQ {
+          height: 9rem;
+          grid-row: span 2;
+        }
+      }
+
+      @media only screen and (min-width: 351px) and (max-width: 391px) {
+        h1 {
+          font-size: 1rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 30px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          width: 3.6rem;
+          height: 3rem;
+          font-size: 10px;
+        }
+
+        .btnEQ {
+          height: 7rem;
+          grid-row: span 2;
+        }
+      }
+
+      @media screen and (max-width: 360px) {
+        h1 {
+          font-size: 1rem;
+          margin-top: 0;
+        }
+
+        .calculator {
+          width: 80%;
+          margin-top: 20px;
+        }
+        .screen {
+          height: 30px;
+          font-size: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+          display: grid;
+        }
+
+        .btn,
+        .btn-op,
+        .btnEQ {
+          margin: 5px;
+          width: 3.2rem;
+          height: 3rem;
+          font-size: 10px;
+        }
+
+        .btnEQ {
+          height: 7rem;
+          grid-row: span 2;
+        }
+      }
+
+        </style>
+</head>
+<body>
+  <!-- SECTION FOR CALCULATOR'S CONSTRUCTION -->
+  <h1
+    style="
+      text-align: center;
+      color: rgb(255, 255, 255);
+      margin-top: 50px;
+      font-family: Georgia;
+    "
+  >
+    Calculator App
+  </h1>
+
+  <div class="calculator">
+    <!-- Screen -->
+    <div class="head">
+      <input type="text" class="screen" id="result" readonly />
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <input type="button" value="C" class="btn-op" onclick="clearInput()" />
+      <input
+        type="button"
+        value="DEL"
+        class="btn-op"
+        onclick="deletefunc()"
+      />
+      <!-- CALCULATORS BUTTONS -->
+      <input type="button" value="x" class="btn-op" onclick="multiply()" />
+      <input type="button" value="+" class="btn-op" onclick="add()" />
+      <input type="button" value="1" class="btn" onclick="appendNum(1)" />
+      <input type="button" value="2" class="btn" onclick="appendNum(2)" />
+      <input type="button" value="3" class="btn" onclick="appendNum(3)" />
+      <input type="button" value="-" class="btn-op" onclick="minus()" />
+      <input type="button" value="4" class="btn" onclick="appendNum(4)" />
+      <input type="button" value="5" class="btn" onclick="appendNum(5)" />
+      <input type="button" value="6" class="btn" onclick="appendNum(6)" />
+      <input type="button" value="÷" class="btn-op" onclick="division()" />
+      <input type="button" value="7" class="btn" onclick="appendNum(7)" />
+      <input type="button" value="8" class="btn" onclick="appendNum(8)" />
+      <input type="button" value="9" class="btn" onclick="appendNum(9)" />
+      <input type="button" value="=" class="btnEQ" onclick="calculate()" />
+      <input type="button" value="0" class="btn" onclick="appendNum(0)" />
+      <input type="button" value="00" class="btn" onclick="appendNum('00')" />
+      <input type="button" value="." class="btn" onclick="appendNum('.')" />
+    </div>
+  </div>
+  
+<!-- JAVA SCRIPT SECTION
+MAINLY FOCUSED ON FUNCTIONS -->
+  <script>
+    let currentOperator = "";
+    let currentInput = "";
+    const display = document.getElementById("result");
+
+    //input
+    function appendNum(number) {
+      currentInput += number;
+      display.value = currentInput;
+      
+    }
+
+    //clear (C BUTTON)
+    function clearInput() {
+      currentOperator = "";
+      currentInput = "";
+      display.value = "";
+      
+    }
+
+    // OPERATOR FUNCTION SECTION
+    
+
+    function add() {
+      currentOperator = "+";
+      currentInput += currentOperator;
+      display.value = currentInput;
+      
+    }
+    function minus() {
+      currentOperator = "-";
+      currentInput += currentOperator;
+      display.value = currentInput;
+      
+    }
+    function multiply() {
+      currentOperator = "*";
+      currentInput += currentOperator;
+      display.value = currentInput;
+      
+    }
+    function division() {
+      currentOperator = "/";
+      currentInput += currentOperator;
+      display.value = currentInput;
+      
+    }
+
+    //equal function
+    function calculate() {
+      try {
+        const result = eval(currentInput);
+        display.value = result;
+        currentOperator = "";
+        currentInput = result.toString();
+      } catch (error) {
+        display.value = "Syntax Error, Calculate again!";
+        currentInput = "";
+      }
+    }
+
+    //delete function
+    function deletefunc() {
+      currentInput = currentInput.slice(0, -1);
+      display.value = currentInput;
+      
+    }
+
+  </script>
+</body>
+</html>
